@@ -1,56 +1,52 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 
-namespace Primeiro {
-  class Program {
-    static void Main(string[] args) {
-      ArrayList final = new ArrayList();
-      int num_inicial;
-      int num_final;
-      Boolean primo;
+namespace PrimeNumbers
+{
+    static class Program
+    {
+        static void Main()
+        {
+            int initialNumber;
+            int finalNumber;
 
-      Console.WriteLine("Olá, bem vindx ao jogo! \nDigite o número inicial:");
-      num_inicial = int.Parse(Console.ReadLine());
-      Console.WriteLine("Digite o número final:");
-      num_final = int.Parse(Console.ReadLine());
+            Console.Write("\n\tOlá, bem vindx ao jogo! \n\n\tDigite o número inicial: ");
+            initialNumber = int.Parse(Console.ReadLine());
 
-      for (int i = num_inicial; i <= num_final; i++) {
-        primo = true;
+            Console.Write("\n\tDigite o número final: ");
+            finalNumber = int.Parse(Console.ReadLine());
 
-        if (i == 1) {
-          primo = false;
+            List<int> listOfPrimeNumbers = ExtractPrimeNumbersFromInterval(initialNumber, finalNumber);
+
+            Console.Write("\n\n\tList of prime numbers within the informed interval: \n\t");
+            for (int x = 0; x < listOfPrimeNumbers.Count; x++) Console.Write(listOfPrimeNumbers[x] + " ");
+
+            Console.ReadLine();
         }
 
-        if (primo) {
-          if ((i % 2 == 0) && (i != 2)) {
-            primo = false;
-          }
-        }
-        if (primo) {
+        public static List<int> ExtractPrimeNumbersFromInterval(int initialNumber, int finalNumber)
+        {
+            List<int> listOfPrimeNumbers = new List<int>();
 
-          for (int j = 3; j <= (i / 2); j++) {
-            if (i % j == 0) {
+            for (int i = initialNumber; i <= finalNumber; i++)
+            {
+                if ((i == 1) || (i % 2 == 0)) continue;
 
-              primo = false;
-              break;
+                bool isAPrimeNumber = true;
+                for (int j = 3; j <= (i / 2); j++)
+                {
+                    if (i % j == 0)
+                    {
+                        isAPrimeNumber = false;
+                        break;
+                    }
+                }
 
+                if (isAPrimeNumber) listOfPrimeNumbers.Add(i);
             }
-          }
 
+            return listOfPrimeNumbers;
         }
-
-        if (primo) {
-
-          final.Add(i);
-
-        }
-
-      }
-
-      for (int x = 0; x < final.Count; x++) {
-        Console.Write(final[x] + " ");
-
-      }
-
     }
-  }
 }
