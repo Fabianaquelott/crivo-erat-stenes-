@@ -11,7 +11,7 @@ namespace PrimeNumbers
             int initialNumber;
             int finalNumber;
 
-            Console.Write("\n\tOlá, bem vindx ao jogo! \n\n\tDigite o número inicial: ");
+            Console.Write("\n\tOlá, seja bem vindo(a) ao jogo! \n\n\tDigite o número inicial: ");
             initialNumber = int.Parse(Console.ReadLine());
 
             Console.Write("\n\tDigite o número final: ");
@@ -19,7 +19,7 @@ namespace PrimeNumbers
 
             List<int> listOfPrimeNumbers = ExtractPrimeNumbersFromInterval(initialNumber, finalNumber);
 
-            Console.Write("\n\n\tList of prime numbers within the informed interval: \n\t");
+            Console.Write("\n\n\tLista de números primos dentro do intervalo informado: \n\t");
             for (int x = 0; x < listOfPrimeNumbers.Count; x++) Console.Write(listOfPrimeNumbers[x] + " ");
 
             Console.ReadLine();
